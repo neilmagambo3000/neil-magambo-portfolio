@@ -1,18 +1,16 @@
-# Neil Magambo: personal portfolio
+# Neil Magambo: personal site
 
-My personal portfolio website. I first built it in PHP as coursework for CSC 310 Web Development at Concordia College (Fall 2025). This repository holds a static HTML version of that site so it can be hosted for free on GitHub Pages.
+One static page for SDR and BDR hiring managers at SaaS and AI companies. It is written like a social work progress note: S, what I said; O, what you can check; A, my read; P, the plan. Published with GitHub Pages from the root of this repository.
 
-## How this version was made
+- No scripts, no analytics and no third-party requests. Each page sets a Content Security Policy that only allows files from this site.
+- Fonts are self-hosted: Geist and a subset of Newsreader, both under the SIL Open Font License (see `assets/fonts/OFL.txt`).
+- `404.html` sends old links from the earlier coursework version of this site (biography.html, projects.html and the others) to the new page.
+- The earlier version, my CSC 310 Web Development coursework from Concordia College, is kept in the history at commit `e753176`.
 
-- Each PHP page became a plain HTML page with the same structure, text and stylesheet. The shared header and footer and the project data file became repeated HTML, and the project detail page (project.php?id=N) became project-1.html to project-3.html.
-- Nothing runs on a server. The original contact form is replaced with a link to my LinkedIn profile.
-- Differences from the PHP version: education shows my May 2026 graduation; team project descriptions say exactly what my part was; the résumé PDF is not included.
-- No scripts, no external fonts, no analytics and no third-party requests. Every page sets a Content Security Policy that only allows local files.
+## View it locally
 
-## View it
-
-Open index.html in a browser. No build step or server is needed.
+Fonts do not load from `file://`, so serve the folder over HTTP, for example `python3 -m http.server 8000` in this folder, then open http://localhost:8000/.
 
 ## License
 
-The site code (HTML structure and CSS) is under the MIT License; see LICENSE. The written content and the photo are © Neil Magambo, all rights reserved.
+The site code (HTML and CSS) is under the MIT License; see `LICENSE`. The written content and the photo are © Neil Magambo, all rights reserved. The fonts keep their own license in `assets/fonts/OFL.txt`.

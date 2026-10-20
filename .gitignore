@@ -1,0 +1,5 @@
+# Local design and review files (never deployed)
+PRODUCT.md
+DESIGN.md
+.impeccable/
+.DS_Store
