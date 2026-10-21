@@ -29,6 +29,7 @@
   --print-soft: #eba7b2;
   --pen: #2e4fd6;
   --pen-wash: rgba(46, 79, 214, 0.16);
+  --pen-on-ink: #a3b3ff;
   --canary: #fff3c4;
   --canary-ink-2: #4b421a;
   --canary-hair: rgba(75, 66, 26, 0.2);
@@ -57,11 +58,12 @@
     --print-soft: #6e2f3a;
     --pen: #a3b3ff;
     --pen-wash: rgba(143, 163, 255, 0.24);
-    --canary: #262210;
-    --canary-ink-2: #e2d8a4;
-    --canary-hair: rgba(226, 216, 164, 0.18);
-    --pink: #2a171c;
-    --pink-ink-2: #f0cad2;
+    --pen-on-ink: #2e4fd6;
+    --canary: #211e15;
+    --canary-ink-2: #ddd5b4;
+    --canary-hair: rgba(221, 213, 180, 0.16);
+    --pink: #231b1e;
+    --pink-ink-2: #ecd0d6;
     --perf: #66666e;
     --clip: #8f949c;
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 22px 44px -18px rgba(0, 0, 0, 0.7);
@@ -95,16 +97,19 @@ body {
   color: var(--ink);
 }
 
+/* Signature: the ballpoint. Links and buttons get a pen stroke under the words on hover and keyboard focus. */
 a {
   color: var(--pen);
   text-decoration-line: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.22em;
-  transition: text-decoration-thickness 0.15s ease-out;
+  transition: text-decoration-thickness 0.2s cubic-bezier(0.16, 1, 0.3, 1), text-underline-offset 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-a:hover {
+a:hover,
+a:focus-visible {
   text-decoration-thickness: 2.5px;
+  text-underline-offset: 0.16em;
 }
 
 :focus-visible {
@@ -324,6 +329,13 @@ strong {
   transform: rotate(-6deg);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  a,
+  .btn {
+    transition: none;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .stamp {
     animation: stamp 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.15s backwards;
@@ -362,6 +374,10 @@ strong {
   letter-spacing: -0.02em;
   text-align: center;
   color: var(--print);
+}
+
+.part__body > p {
+  max-width: 68ch;
 }
 
 .part__body {
@@ -430,8 +446,17 @@ h3 {
   border-radius: 2px;
   font: 560 1rem/1.2 var(--sans);
   letter-spacing: -0.005em;
-  text-decoration: none;
-  transition: background-color 0.18s ease-out, border-color 0.18s ease-out, color 0.18s ease-out;
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.4em;
+  transition: text-decoration-color 0.2s ease-out, text-underline-offset 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn:hover,
+.btn:focus-visible {
+  text-decoration-color: var(--pen);
+  text-underline-offset: 0.3em;
 }
 
 .btn--ink {
@@ -439,19 +464,14 @@ h3 {
   color: var(--paper);
 }
 
-.btn--ink:hover {
-  background: var(--pen);
-  border-color: var(--pen);
-  color: var(--paper);
+.btn--ink:hover,
+.btn--ink:focus-visible {
+  text-decoration-color: var(--pen-on-ink);
 }
 
 .btn--line {
   background: transparent;
   color: var(--ink);
-}
-
-.btn--line:hover {
-  background: var(--pen-wash);
 }
 
 .btn:active {
@@ -508,6 +528,15 @@ h3 {
   height: 11px;
   border-radius: 50%;
   background: var(--pen);
+}
+
+.status__dot--partial {
+  border: 1.5px solid var(--pen);
+  background: linear-gradient(90deg, var(--pen) 50%, transparent 50%);
+}
+
+.status__word--partial {
+  border-style: dashed;
 }
 
 .status__word {
@@ -747,7 +776,7 @@ mark {
 }
 
 .plan {
-  margin: 0 0 0.35em;
+  margin: 0 0 0.4em;
   font: 650 clamp(1.875rem, 3.8vw, 2.75rem)/1.08 var(--sans);
   letter-spacing: -0.03em;
 }

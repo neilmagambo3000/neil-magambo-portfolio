@@ -4,7 +4,7 @@ One static page for SDR and BDR hiring managers at SaaS and AI companies. It is 
 
 - No scripts, no analytics and no third-party requests. Each page sets a Content Security Policy that only allows files from this site.
 - Fonts are self-hosted: Geist and a subset of Newsreader, both under the SIL Open Font License (see `assets/fonts/OFL.txt`).
-- `404.html` sends old links from the earlier coursework version of this site (biography.html, projects.html and the others) to the new page.
+- `404.html` shows a short "This page moved" notice with a link to the new page when someone opens an old link from the earlier coursework version of this site (biography.html, projects.html and the others).
 - The earlier version, my CSC 310 Web Development coursework from Concordia College, is kept in the history at commit `e753176`.
 
 ## View it locally
